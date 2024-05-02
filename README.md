@@ -1,5 +1,5 @@
 ## Visual SLAM
-You should download the latest version of Ardupilot:
+gazebo simülasyon ortamında no_gps uçuş yapmak istiyorsanız güncel parametre verilerine ulaşmak için ardupilotun güncel versiyonunu kurmanı gerekiyor.
 ```
 git config --global http.postBuffer 524288000
 git config --global http.lowSpeedLimit 0
@@ -12,10 +12,7 @@ cd ~/ardupilot
 Tools/environment_install/install-prereqs-ubuntu.sh -y
 ```
 
-
-kamera kalibrason verisine erişme:
+ssh_key:
 ```
-rostopic echo /webcam/camera_info
+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
 ```
-
-![orbslam](orb-slam3.png)
