@@ -11,7 +11,7 @@ git clone --depth 1 https://github.com/ArduPilot/ardupilot.git
 cd ~/ardupilot
 Tools/environment_install/install-prereqs-ubuntu.sh -y
 ```
-Ardupilot parametre ayarları:
+Visual bazlı navigasyon için Ardupilot parametre ayarları:
 ```
 param set EK3_SRC1_POSXY 6
 param set EK3_SRC1_VELXY 6
