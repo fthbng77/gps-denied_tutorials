@@ -13,11 +13,13 @@ Tools/environment_install/install-prereqs-ubuntu.sh -y
 ```
 Visual bazlı navigasyon için Ardupilot parametre ayarları:
 ```
+param set AHRS_EKF_TYPE 3
 param set EK3_SRC1_POSXY 6
 param set EK3_SRC1_VELXY 6
 param set EK3_SRC1_POSZ 6
 param set EK3_SRC1_VELZ 6 
 param set EK3_SRC1_YAW 6
+param set VISO_TYPE 1
 ```
 ssh_key:
 ```
