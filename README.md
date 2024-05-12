@@ -26,6 +26,11 @@ GPS'i devredışı bırakmak için
 param set GPS1_TYPE 0
 ```
 
+Aracın Home ve origin noktasını ayarlamak gerekiyor:
+
+![Home](home.jpeg)
+
+
 ssh_key:
 ```
 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
