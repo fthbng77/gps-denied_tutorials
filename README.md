@@ -21,6 +21,11 @@ param set EK3_SRC1_VELZ 6
 param set EK3_SRC1_YAW 6
 param set VISO_TYPE 1
 ```
+GPS'i devredışı bırakmak için
+```
+param set GPS1_TYPE 0
+```
+
 ssh_key:
 ```
 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
