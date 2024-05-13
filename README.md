@@ -30,6 +30,9 @@ Aracın Home ve origin noktasını ayarlamak gerekiyor:
 
 ![Home](home.jpeg)
 
+parametreleri ayarlayın ardupilot SITL'den/Mavproxy:
+
+![parameters](parametres.png)
 
 ssh_key:
 ```
