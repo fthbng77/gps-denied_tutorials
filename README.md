@@ -38,3 +38,17 @@ ssh_key:
 ```
 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
 ```
+
+## Simülasyonu Başlatma
+ros ile gazebo başlatma:
+```
+roslaunch iq_sim yolgazebo.launch 
+```
+SITL'i başlatma:
+```
+./startsitl.sh
+```
+apm.launch başlatma:
+```
+roslaunch iq_sim apm.launch
+```
