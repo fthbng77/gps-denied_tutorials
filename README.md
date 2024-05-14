@@ -44,6 +44,19 @@ ros ile gazebo başlatma:
 ```
 roslaunch iq_sim yolgazebo.launch 
 ```
+orbslamı başlatma:
+```
+roslaunch orb_slam3_ros euroc_mono.launch
+```
+GPS'i devredışı bırakmak için:
+```
+cd ~/gps-denied-SLAM
+python orb_slam_to_mavros.py  
+```
+Gazebo üzerinden drone mauel olarak hareket ettirilerek ORBSlam aktifleştirilir.
+
+Ardından
+
 SITL'i başlatma:
 ```
 ./startsitl.sh
@@ -51,4 +64,8 @@ SITL'i başlatma:
 apm.launch başlatma:
 ```
 roslaunch iq_sim apm.launch
+```
+konum bilgilerini görüntülemek için:
+```
+ rostopic echo /mavros/vision_pose/pose
 ```
