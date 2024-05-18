@@ -46,6 +46,7 @@ roslaunch iq_sim yolgazebo.launch
 ```
 orbslamı başlatma:
 ```
+cp  ~/gps-denied-SLAM/launch/euroc_mono.launch ~/catkin_ws/src/orb_slam3_ros/launch/euroc_mono.launch 
 roslaunch orb_slam3_ros euroc_mono.launch
 ```
 GPS'i devredışı bırakmak için:
@@ -53,7 +54,7 @@ GPS'i devredışı bırakmak için:
 cd ~/gps-denied-SLAM
 python orb_slam_to_mavros.py  
 ```
-Gazebo üzerinden drone mauel olarak hareket ettirilerek ORBSlam aktifleştirilir.
+Gazebo üzerinden drone manuel olarak hareket ettirilerek ORBSlam aktifleştirilir.
 
 Ardından
 
