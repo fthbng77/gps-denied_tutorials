@@ -51,7 +51,7 @@ roslaunch orb_slam3_ros euroc_mono.launch
 ```
 GPS'i devredışı bırakmak için:
 ```
-cd ~/gps-denied-SLAM
+cd ~/gps-denied-SLAM/scripts
 python orb_slam_to_mavros.py  
 ```
 Gazebo üzerinden drone manuel olarak hareket ettirilerek ORBSlam aktifleştirilir.
