@@ -28,11 +28,11 @@ param set GPS1_TYPE 0
 
 Aracın Home ve origin noktasını ayarlamak gerekiyor:
 
-![Home](home.jpeg)
+![Home](imgs/home.jpeg)
 
 parametreleri ayarlayın ardupilot SITL'den/Mavproxy:
 
-![parameters](parametres.png)
+![parameters](imgs/parametres.png)
 
 ssh_key:
 ```
