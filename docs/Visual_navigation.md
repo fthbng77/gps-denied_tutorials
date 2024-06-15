@@ -1,4 +1,4 @@
-#visual Navigation
+# Visual Navigation
 
 Gazebo simülasyon ortamında no_gps uçuş yapmak istiyorsanız güncel parametre verilerine ulaşmak için ardupilotun güncel versiyonunu kurmanı gerekiyor.
 
