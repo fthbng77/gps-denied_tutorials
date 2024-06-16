@@ -34,10 +34,6 @@ parametreleri ayarlayın ardupilot SITL'den/Mavproxy:
 
 ![parameters](imgs/parametres.png)
 
-ssh_key:
-```
-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
-```
 
 ## Simülasyonda Başlatma
 ros ile gazebo başlatma:
