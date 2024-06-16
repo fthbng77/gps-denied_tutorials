@@ -48,5 +48,6 @@ sudo apt install ros-noetic-hector-trajectory-server
 Çalıştırmak için : my_config.yaml dosyası gerekiyor
 Başlattıktan sonra dikkat edilmesi gerekilen bir diğer şey hareket ettirildikten sonra görüntü açılır:
 ```
+cp  ~/gps-denied-SLAM/launch/gokmen.launch ~/catkin_ws/src/orb_slam3_ros/launch/gokmen.launch 
 roslaunch orb_slam3_ros gokmen.launch
 ```
