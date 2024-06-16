@@ -11,3 +11,5 @@
 [Real Ortamda No-GPS](docs/Real_No-GPS.md)
 
 [Yol Takip](docs/Path_Guided.md)
+
+[Cuda Cudnn TensorRT Kurulumu](docs/Cuda_Cudnn_tensorrt.md)
