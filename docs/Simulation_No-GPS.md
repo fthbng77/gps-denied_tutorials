@@ -6,8 +6,7 @@ roslaunch iq_sim yolgazebo.launch
 ```
 orbslamı başlatma:
 ```
-cp  ~/gps-denied-SLAM/launch/euroc_mono.launch ~/catkin_ws/src/orb_slam3_ros/launch/euroc_mono.launch 
-roslaunch orb_slam3_ros euroc_mono.launch
+roslaunch orb_slam3_ros gokmen.launch
 ```
 GPS'i devredışı bırakmak için:
 ```
