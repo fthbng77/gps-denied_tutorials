@@ -7,8 +7,8 @@ from pymavlink import mavutil
 from pymavlink_functions import PymavlinkFunctions
 
 class MyDrone(PymavlinkFunctions):
-    def _init_(self, connection_string):
-        super(MyDrone, self)._init_(connection_string)
+    def __init__(self, connection_string):
+        super(MyDrone, self).__init__(connection_string)
 
 drone = MyDrone('udpin:localhost:14550')
 
@@ -30,7 +30,7 @@ def main():
     drone.arm()
     rospy.sleep(2)
     drone.takeoff(5)
-    rospy.sleep(5)    
+    rospy.sleep(10)   
     rate = rospy.Rate(1)
     while not rospy.is_shutdown():
         drone.send_command(1, 0, 0)  # 1 m/s forward velocity

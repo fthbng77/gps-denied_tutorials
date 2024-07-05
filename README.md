@@ -1,35 +1,14 @@
-## Visual SLAM
-gazebo simülasyon ortamında no_gps uçuş yapmak istiyorsanız güncel parametre verilerine ulaşmak için ardupilotun güncel versiyonunu kurmanı gerekiyor.
-```
-git config --global http.postBuffer 524288000
-git config --global http.lowSpeedLimit 0
-git config --global http.lowSpeedTime 999999
+# Tutorials
 
-cd
-git clone --depth 1 https://github.com/ArduPilot/ardupilot.git
+[Githuba dosya gönderme ve çekme](docs/github_pull_push.md)
 
-cd ~/ardupilot
-Tools/environment_install/install-prereqs-ubuntu.sh -y
-```
-Visual bazlı navigasyon için Ardupilot parametre ayarları:
-```
-param set AHRS_EKF_TYPE 3
-param set EK3_SRC1_POSXY 6
-param set EK3_SRC1_VELXY 6
-param set EK3_SRC1_POSZ 6
-param set EK3_SRC1_VELZ 6 
-param set EK3_SRC1_YAW 6
-param set VISO_TYPE 1
-```
-GPS'i devredışı bırakmak için
-```
-param set GPS1_TYPE 0
-```
+[ORBSLAM3 Kurulumu](docs/ORB-SLAM.md)
 
-Aracın Home ve origin noktasını ayarlamak gerekiyor:
+[No-GPS parametreleri](docs/Visual_navigation_parametres.md)
 
-![Home](imgs/home.jpeg)
+[Simülasyon Ortamda No-GPS](docs/Simulation_No-GPS.md)
 
+<<<<<<< HEAD
 parametreleri ayarlayın ardupilot SITL'den/Mavproxy:
 
 ![parameters](imgs/parametres.png)
@@ -78,3 +57,6 @@ roslaunch mavros apm.launch
 sudo ssh gokmen@192.168.43.163 // burada ifconfig ile bağlanılacak pc den adres alınarak düzeltilmesi gerekiyor
 rostopic echo /mavros/vision_pose/pose
 ```
+=======
+[Real Ortamda No-GPS](docs/Real_Bo-GPS.md)
+>>>>>>> 063bb70f8cc120e8be33fe32c0fd812555901a4a

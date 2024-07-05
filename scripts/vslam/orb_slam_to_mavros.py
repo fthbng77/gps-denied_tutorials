@@ -28,13 +28,9 @@ def pose_callback(data):
         transformed_pose.pose.position.x, transformed_pose.pose.position.y, transformed_pose.pose.position.z))
     pub.publish(transformed_pose)
 
-# ROS düğümünü başlat
 rospy.init_node('orb_slam_to_mavros_transform')
 
-# ORB-SLAM3 çıktısını doğru konudan alacak şekilde abone ol
 sub = rospy.Subscriber('/orb_slam3/camera_pose', PoseStamped, pose_callback)
-# MAVROS'a uygun çerçeveye yayın yap
 pub = rospy.Publisher('/mavros/vision_pose/pose', PoseStamped, queue_size=10)
 
-# ROS döngüsünü başlat
 rospy.spin()

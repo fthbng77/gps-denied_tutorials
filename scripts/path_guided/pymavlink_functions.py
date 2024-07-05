@@ -24,14 +24,19 @@ class PymavlinkFunctions:
         )
 
     def takeoff(self, altitude=5):
-        # Takeoff to the specified altitude (in meters)
-        PrintColours.print_blinking_warning("Waiting for the drone to takeoff")
-        time.sleep(2)
-        PrintColours.print_info("Taking off")
-        self.drone.mav.command_long_send(
-            self.drone.target_system, self.drone.target_component,
-            mavutil.mavlink.MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, altitude
-        )
+        PrintColours.print_blinking_warning("Preparing for takeoff")
+        current_altitude = 0
+        step_size = 0.25  # Altitude to increase in each step in meters
+        while current_altitude < altitude:
+            current_altitude += step_size
+            if current_altitude > altitude:
+                current_altitude = altitude
+            PrintColours.print_info(f"Taking off to altitude {current_altitude} meters")
+            self.drone.mav.command_long_send(
+                self.drone.target_system, self.drone.target_component,
+                mavutil.mavlink.MAV_CMD_NAV_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, current_altitude
+            )
+            time.sleep(2) 
 
     def send_command(self, forward, right, down):
         if self.drone is None:
