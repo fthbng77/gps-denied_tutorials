@@ -59,7 +59,7 @@ def publish_grayscale_image():
             rospy.logerr("CvBridge Error: {0}".format(e))
 
     # Subscribe to the webcam topic
-    rospy.Subscriber("/usb_cam/image_raw", Image, image_callback)
+    rospy.Subscriber("/webcam/image_raw", Image, image_callback)
 
     rospy.spin()
 

@@ -29,7 +29,7 @@ def main():
     rospy.Subscriber("/tracking_deviation", Float32, distance_callback)
     drone.arm()
     rospy.sleep(2)
-    drone.takeoff(5)
+    drone.takeoff(2)
     rospy.sleep(10)   
     rate = rospy.Rate(1)
     while not rospy.is_shutdown():
