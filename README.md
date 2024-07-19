@@ -4,6 +4,8 @@
 
 [ORBSLAM3 Kurulumu](docs/ORB-SLAM.md)
 
+[OpenCV build ile Kurulumu](docs/opencv_build_kurulum.md)
+
 [No-GPS parametreleri](docs/Visual_navigation_parametres.md)
 
 [Simülasyon Ortamda No-GPS](docs/Simulation_No-GPS.md)
