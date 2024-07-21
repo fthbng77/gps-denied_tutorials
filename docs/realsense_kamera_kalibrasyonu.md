@@ -103,3 +103,5 @@ yada bu:
 ```
 realsense-dynamic-calibrator
 ```
+
+telefona internetten dynamic calibrator uygulaması indir veya kağıt kullanarak kalibrasyon yap
