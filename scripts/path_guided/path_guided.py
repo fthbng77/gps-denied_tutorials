@@ -25,12 +25,7 @@ def distance_callback(msg):
 
 def main():
     rospy.init_node("drone_controller", anonymous=True)
-    rospy.Subscriber("/tracking_deviation", Float32, distance_callback)
-    drone.mode("GUIDED")
-    drone.arm()
-    rospy.sleep(2)
-    drone.takeoff(4)
-    rospy.sleep(10)   
+    rospy.Subscriber("/tracking_deviation", Float32, distance_callback)  
     rate = rospy.Rate(1)
     while not rospy.is_shutdown():
         drone.send_command(1, 0, 0)  # 1 m/s forward velocity
