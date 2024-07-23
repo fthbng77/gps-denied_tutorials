@@ -1,0 +1,38 @@
+<launch>
+    <param name="use_sim_time" value="true" />
+
+    <!-- Main node -->
+    <node name="orb_slam3" pkg="orb_slam3_ros" type="ros_mono_inertial" output="screen">
+        <!-- Senkronize IMU ve kamera verilerini kullan -->
+        <remap from="/camera/image_raw" to="/sync_node/image_raw"/>
+        <remap from="/imu" to="/sync_node/imu/data"/>
+
+        <!-- Parameters for original ORB-SLAM3 -->
+        <param name="voc_file" type="string" value="$(find orb_slam3_ros)/orb_slam3/Vocabulary/ORBvoc.txt.bin"/>
+        <param name="settings_file" type="string" value="$(find orb_slam3_ros)/config/Monocular-Inertial/EuRoC.yaml"/>
+
+        <!-- Parameters for ROS -->
+        <param name="world_frame_id" type="string" value="world"/>
+        <param name="cam_frame_id" type="string" value="camera"/>
+        <param name="imu_frame_id" type="string" value="imu"/>
+        <param name="enable_pangolin" type="bool" value="true"/>
+    </node>
+
+    <!-- Synchronization node senkron dosyası scripts/vsalm icinde-->
+    <node name="sync_node" pkg="iq_gnc" type="senkron.py" output="screen"/>
+
+    <!-- Visualization -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find orb_slam3_ros)/config/orb_slam3_with_imu.rviz" output="screen"/>
+
+    <!-- Trajectory path -->
+    <node pkg="hector_trajectory_server" type="hector_trajectory_server" name="trajectory_server_orb_slam3" output="screen" ns="orb_slam3_ros">
+        <param name="/target_frame_name" value="/world"/>
+        <param name="/source_frame_name" value="/imu"/>
+        <param name="/trajectory_update_rate" value="20.0"/>
+        <param name="/trajectory_publish_rate" value="20.0"/>
+    </node>
+
+    <!-- /world ve /camera arası dönüşüm -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_camera_tf" args="0 0 0 0 0 0 world camera"/>
+</launch>
+
