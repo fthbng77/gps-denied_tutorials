@@ -2,20 +2,16 @@
 import rospy
 from geometry_msgs.msg import PoseStamped
 
-# Ölçek faktörünü belirle
-scale_factor = 44.32  # Önceden belirlenen veya deneysel olarak bulunan ölçek faktörü
+scale_factor = 44.32
 
 def transform_pose(orb_pose):
-    # ORB-SLAM3'ten MAVROS'a koordinat dönüşümü
     mavros_pose = PoseStamped()
     mavros_pose.header = orb_pose.header
     mavros_pose.pose.position.x = orb_pose.pose.position.z * scale_factor
     mavros_pose.pose.position.y = -orb_pose.pose.position.x * scale_factor
     mavros_pose.pose.position.z = -orb_pose.pose.position.y * scale_factor
     
-    # MAVROS için orientasyon dönüşümü (Eğer gerekirse)
-    mavros_pose.pose.orientation = orb_pose.pose.orientation  # Bu, genellikle daha karmaşık bir dönüşüm gerektirebilir
-    
+    mavros_pose.pose.orientation = orb_pose.pose.orientation
     return mavros_pose
 
 def pose_callback(data):

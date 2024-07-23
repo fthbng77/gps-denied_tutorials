@@ -13,7 +13,6 @@ class MyDrone(PymavlinkFunctions):
 drone = MyDrone('udpin:localhost:14550')
 
 def distance_callback(msg):
-    # distance mesajını işleyin ve drone'un yönünü ayarlayın
     distance_in_pixels = msg.data
     print(distance_in_pixels)
     
@@ -27,9 +26,10 @@ def distance_callback(msg):
 def main():
     rospy.init_node("drone_controller", anonymous=True)
     rospy.Subscriber("/tracking_deviation", Float32, distance_callback)
+    drone.mode("GUIDED")
     drone.arm()
     rospy.sleep(2)
-    drone.takeoff(2)
+    drone.takeoff(4)
     rospy.sleep(10)   
     rate = rospy.Rate(1)
     while not rospy.is_shutdown():

@@ -1,0 +1,47 @@
+ekf_config.yaml:
+  frequency: 30
+  sensor_timeout: 0.1
+  two_d_mode: false
+  transform_time_offset: 0.0
+  transform_timeout: 0.0
+  print_diagnostics: true
+  debug: false
+
+  process_noise_covariance: [1e-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                             0, 1e-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                             0, 0, 1e-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                             0, 0, 0, 1e-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                             0, 0, 0, 0, 1e-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                             0, 0, 0, 0, 0, 1e-3, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+  initial_estimate_covariance: [1e-9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 1e-9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 1e-9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 1e-9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 1e-9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 1e-9, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+  # IMU data configuration
+  imu0: /mavros/imu/data
+  imu0_config: [False, False, False,
+                True,  True,  True,
+                False, False, False,
+                True,  True,  True,
+                False, False, False,
+                False, False, False]
+  imu0_queue_size: 10
+  imu0_nodelay: false
+  imu0_differential: false
+  imu0_relative: false
+
+  # Vision Pose data configuration
+  pose0: /mavros/vision_pose/pose
+  pose0_config: [True,  True,  True,
+                 True,  True,  True,
+                 False, False, False,
+                 False, False, False,
+                 True,  True,  True]
+  pose0_queue_size: 10
+  pose0_nodelay: false
+  pose0_differential: false
+  pose0_relative: false

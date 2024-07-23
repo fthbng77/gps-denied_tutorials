@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+"""
+Görsel tabanlı sonuçlar doğrultusunda düzenlenen 
+"""
+
 import rospy
 from geometry_msgs.msg import PoseStamped
 from transformations import quaternion_multiply, quaternion_about_axis, quaternion_conjugate
