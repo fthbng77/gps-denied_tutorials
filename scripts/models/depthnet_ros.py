@@ -26,7 +26,7 @@ class DepthProcessor:
         rospy.loginfo("DepthField retrieved.")
 
         rospy.sleep(1)
-        self.image_subscriber = rospy.Subscriber('/usb_cam/image_raw/compressed', CompressedImage, self.image_callback)
+        self.image_subscriber = rospy.Subscriber('/webcam/image_raw/compressed', CompressedImage, self.image_callback)
         rospy.loginfo("Subscribed to /usb_cam/image_raw/compressed.")
 
         rospy.loginfo("DepthProcessor initialized successfully!")

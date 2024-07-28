@@ -9,7 +9,7 @@ from std_msgs.msg import Float32
 class ImageConverter:
     def __init__(self):
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("/webcam/image_raw", Image, self.callback)
+        self.image_sub = rospy.Subscriber("/usb_cam/image_raw", Image, self.callback)
         self.distance_pub = rospy.Publisher("/tracking_deviation", Float32, queue_size=10)  # Create a publisher
 
     def callback(self, data):
@@ -23,8 +23,8 @@ class ImageConverter:
         hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
 
         # yol için sınır değerleri belirle
-        lower_hsv = (0, 80, 80)
-        upper_hsv = (22, 255, 255)
+        lower_hsv = (0, 0, 50)
+        upper_hsv = (179, 50, 255)
 
         # Belirlenen sınırlar arasındaki renkler maskelenir
         mask = cv2.inRange(hsv, lower_hsv, upper_hsv)
