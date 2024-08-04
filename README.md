@@ -6,6 +6,8 @@
 
 [OpenCV build ile Kurulumu](docs/opencv_build_kurulum.md)
 
+[Cuda CuDNN TensorRT Kurulumu](docs/Cuda_Cudnn_tensorrt.md)
+
 [No-GPS parametreleri](docs/Visual_navigation_parametres.md)
 
 [Simülasyon Ortamda No-GPS](docs/Simulation_No-GPS.md)
