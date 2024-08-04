@@ -17,3 +17,9 @@ export ROS_MASTER_URI=http://192.168.182.41:11311
 # Rosdan gelen verileri görüntülediğimiz bilgisayarın ip'si yazılır
 export ROS_IP=192.168.182.41
 ```
+
+Araç üzerinden gelen kamera görüntüsünü ros ile görüntüleyebilmek için:
+```
+cd gps-denied_tutorials/launch
+roslaunch usb_cam-test.launch
+```
