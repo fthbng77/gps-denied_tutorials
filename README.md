@@ -2,8 +2,6 @@
 
 * [Githuba dosya gönderme ve çekme](docs/github_pull_push.md)
 
-* [Ağa bağlı cihazları öğrenme](docs/ayni_wifi_cihaz_bulma.md)
-
 * [ORBSLAM3 Kurulumu](docs/ORB-SLAM.md)
 
 * [OpenCV build ile Kurulumu](docs/opencv_build_kurulum.md)
