@@ -1,0 +1,89 @@
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y
+
+mavros verilerini dinlemek:
+sudo cat /dev/ttyUSB0
+screen /dev/ttyUSB0 57600
+
+---------------------------------------------------------------------------------
+MAVPROXY
+eskisi: 
+sudo mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --aircraft drone
+yenisi: 
+mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550
+
+---------------------------------------------------------------------------------
+
+APMLAUNCH DOSYASI
+apm.launch onceden:         <arg name="fcu_url" default="/dev/ttyACM0:57600" />
+apm.launch simdi:           <arg name="fcu_url" default="udp://:14550@"/>
+
+----------------------------------------------------------------------------------
+
+pymavlink connection:
+#!/usr/bin/env python
+from pymavlink_functions import PymavlinkFunctions
+import time
+
+class MyDrone(PymavlinkFunctions):
+    def __init__(self, connection_string):
+        super(MyDrone, self).__init__(connection_string)
+
+if __name__ == "__main__":
+    # connection_string'in bir UDP portunu dinleyecek şekilde ayarlanması gerekiyor, örneğin: 'udpin:localhost:14551'
+    drone = MyDrone('udpin:localhost:14551')
+
+---------------------------------------------------------------------------------
+MAVROS baslat:
+eskisi: 
+roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB0:57600
+yenisi: 
+roslaunch mavros apm.launch
+
+---------------------------------------------------------------------------------
+BASHRC UPDATE ETMEK İÇİN (bir sefer!)
+source /home/gokmen/catkin_ws/devel/setup.bash
+source ~/.bashrc
+
+---------------------------------------------------------------------------------
+yusufun tel ve raspi: sudo ssh pi@192.168.43.9
+fatihin tel ve raspi: sudo ssh pi@192.168.229.11 
+yusufun tel ve  nano: sudo ssh gokmen@192.168.43.163
+raspi'nin wifi configurasyon ayarlari icin: sudo nano /etc/netplan/50-cloud-init.yaml
+
+---------------------------------------------------------------------------------
+ALTITUDE DINLE
+rostopic echo /mavros/global_position/rel_alt
+
+uydu dinle:
+rostopic echo /mavros/global_position/raw/satellites
+
+position dinle:
+rostopic echo /mavros/local_position/pose
+
+
+###################### RPI4 NETPLAN YAPILANDIRMA AYARI #########################
+
+/etc/netplan/50-cloud-init.yaml dosyanızı aşağıdaki şekilde düzenleyin:
+
+network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlan0:
+      access-points:
+        "gokmen61":
+          hidden: true
+          password: "gokmenuavteam"
+      dhcp4: true
+      optional: true
+
+Cloud-init'in ağ yapılandırmasını devre dışı bırakmak isterseniz, yeni bir dosya oluşturun: /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg ve içeriği aşağıdaki gibi yapın:
+network: {config: disabled}
+
+Bu adımların ardından, netplan'ı uygulayın:
+sudo netplan apply
+
+###################### RPI4 NETPLAN YAPILANDIRMA AYARI #########################
+
+ayni agdaki cihazlarin ipsini sorgulamak icin
+sudo arp-scan --localnet
