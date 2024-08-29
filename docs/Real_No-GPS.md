@@ -29,4 +29,6 @@ Raspberry Pi üzerinde ssh ile açlıştırılması gerekiyor:
 mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550
 # yeni terminal
 roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB0:57600
+roslaunch mavros apm.launch fcu_url:=udp://0.0.0.0:14550@5760
+
 ```
