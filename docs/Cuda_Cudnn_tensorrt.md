@@ -5,7 +5,17 @@ Nvidia-driver-525, Cuda 12.0, Cudnn 8.9.0, Pytorch ve TensorRT kurulumunun ubunt
 
 ### Nvidia driver kurulumu
 ```shell
-sudo apt-get install nvidia-driver-525
+sudo apt purge nvidia* -y
+sudo apt remove nvidia-* -y
+sudo rm /etc/apt/sources.list.d/cuda*
+sudo apt autoremove -y && sudo apt autoclean -y
+sudo rm -rf /usr/local/cuda*
+sudo apt update && sudo apt upgrade -y
+
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+sudo apt-get install nvidia-driver-535
+sudo apt install libnvidia-common-535 libnvidia-gl-535 nvidia-driver-535 -y
 sudo prime-select nvidia
 sudo reboot
 ```
