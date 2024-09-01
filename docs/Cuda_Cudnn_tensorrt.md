@@ -44,13 +44,15 @@ Burada https://developer.nvidia.com/rdp/cudnn-download sayfasına gidip aşağı
   - Local Installer for Ubuntu20.04 x86_64 (Deb)
 
 ```shell
-sudo dpkg -i cudnn-local-repo-ubuntu2004-8.9.0.131_1.0-1_amd64.deb
-sudo cp /var/cudnn-local-repo-*/cudnn-local-*-keyring.gpg /usr/share/keyrings/
+wget https://developer.download.nvidia.com/compute/cudnn/9.0.0/local_installers/cudnn-local-repo-ubuntu2004-9.0.0_1.0-1_amd64.deb
+sudo dpkg -i cudnn-local-repo-ubuntu2004-9.0.0_1.0-1_amd64.deb
+sudo cp /var/cudnn-local-repo-ubuntu2004-9.0.0/cudnn-*-keyring.gpg /usr/share/keyrings/
 sudo apt-get update
+sudo apt-get -y install cudnn-cuda-12
 
-sudo apt-get install libcudnn8=8.9.0.131-1+cuda12.1
-sudo apt-get install libcudnn8-dev=8.9.0.131-1+cuda12.1
-sudo apt-get install libcudnn8-samples=8.9.0.131-1+cuda12.1
+#sudo apt-get install libcudnn8=8.9.0.131-1+cuda12.1
+#sudo apt-get install libcudnn8-dev=8.9.0.131-1+cuda12.1
+#sudo apt-get install libcudnn8-samples=8.9.0.131-1+cuda12.1
 ```
 
 kontrol etmek için:
