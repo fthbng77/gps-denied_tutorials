@@ -102,5 +102,5 @@ dpkg-query -W tensorrt
 sudo dpkg -i nv-tensorrt-local-repo-ubuntu2004-10.3.0-cuda-12.5_1.0-1_amd64.deb
 cd /var/nv-tensorrt-local-repo-ubuntu2004-10.3.0-cuda-12.5/
 
-sudo dpkg -i *
+sudo dpkg -i *.deb
 ```
