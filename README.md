@@ -1,7 +1,5 @@
 # Tutorials
 
-* [Githuba dosya gönderme ve çekme](docs/github_pull_push.md)
-
 * [ORBSLAM3 Kurulumu](docs/ORB-SLAM.md)
 
 * [OpenCV build ile Kurulumu](docs/opencv_build_kurulum.md)
