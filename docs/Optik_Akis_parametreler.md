@@ -1,5 +1,8 @@
 ## Optik Akış parametreler
 
+
+Kaynak olarak [Inflight Optical Flow Calibration](https://www.youtube.com/watch?v=Crx97v1bwWo "Optik Akis Kalibrasyonu") 
+
 ```
 # GPS:
 param set EK3_SRC1_POSXY=3
