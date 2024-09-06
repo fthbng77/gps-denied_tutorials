@@ -1,4 +1,4 @@
-# Real ortamda başlatma
+# Real Test bağlanma
 
 ```
 mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550 --console
