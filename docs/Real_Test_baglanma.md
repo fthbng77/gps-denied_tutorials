@@ -9,7 +9,7 @@ sudo ssh gokmen@192.168.43.163 // burada ifconfig ile bağlanılacak pc den adre
 rostopic echo /mavros/vision_pose/pose
 ```
 
-Bilgisayardan bilgisayara ROS bağlantısı sağlama(.bashrc yazılması gereken):
+### Bilgisayardan bilgisayara ROS bağlantısı sağlama(.bashrc yazılması gereken):
 ```
 ifconfig ile ip öğrenip düzenlenmesi gerekiyor
 # Master ros konusu yayıcak bilgisayarın ip'si
@@ -18,7 +18,7 @@ export ROS_MASTER_URI=http://192.168.182.41:11311
 export ROS_IP=192.168.182.41
 ```
 
-Araç üzerinden gelen kamera görüntüsünü ros ile görüntüleyebilmek için:
+### Araç üzerinden gelen kamera görüntüsünü ros ile görüntüleyebilmek için:
 ```
 cd gps-denied_tutorials/launch
 roslaunch usb_cam-test.launch
