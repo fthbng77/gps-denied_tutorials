@@ -23,7 +23,8 @@ Araç üzerinden gelen kamera görüntüsünü ros ile görüntüleyebilmek içi
 cd gps-denied_tutorials/launch
 roslaunch usb_cam-test.launch
 ```
-Raspberry Pi üzerinde ssh ile açlıştırılması gerekiyor:
+
+### Raspberry Pi üzerinden ssh ile çalıştırma:
 
 ```
 mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550
