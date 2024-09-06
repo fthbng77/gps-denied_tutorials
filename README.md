@@ -10,6 +10,8 @@
 
 * [Cuda CuDNN TensorRT Kurulumu](docs/Cuda_Cudnn_tensorrt.md)
 
+* [Optik akış için parametre ayarları](docs/Optik_Akis_parametreler.md)
+
 * [No-GPS parametreleri](docs/Visual_navigation_parametres.md)
 
 * [Simülasyon Ortamda No-GPS](docs/Simulation_No-GPS.md)
