@@ -30,8 +30,6 @@ roslaunch usb_cam-test.launch
 
 ```
 mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550
-# yeni terminal
-roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB0:57600
+# yeni terminal çakışmaları önlemek için apm aşağıdaki şekilde çalıştırılması gerekiyor.
 roslaunch mavros apm.launch fcu_url:=udp://0.0.0.0:14550@5760
-
 ```
