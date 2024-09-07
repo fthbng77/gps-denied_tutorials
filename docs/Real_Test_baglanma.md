@@ -1,7 +1,7 @@
 # Real Test bağlanma
 
 ### Telemetri ile araca bağlanma
-Laptoba telemtri takılır araç üzerindeki telemetriden yer bilgisayarına veriler telemetri aracılığıyla aktarılır.
+Yer kontrol istasyonuna telemtri takılır araç üzerindeki telemetriden yer bilgisayarına veriler telemetri aracılığıyla aktarılır.
 ```
 mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550 --console
 # yeni terminalde
