@@ -10,10 +10,14 @@
 
 * [Cuda CuDNN TensorRT Kurulumu](docs/Cuda_Cudnn_tensorrt.md)
 
+* [Jetson İnference Kurulumu](docs/Jetson_inference_kurulumu.md)
+
+* [Optik akış için parametre ayarları](docs/Optik_Akis_parametreler.md)
+
 * [No-GPS parametreleri](docs/Visual_navigation_parametres.md)
 
 * [Simülasyon Ortamda No-GPS](docs/Simulation_No-GPS.md)
 
-* [Real Ortamda No-GPS](docs/Real_No-GPS.md)
+* [Real Ortamda Araca Bağlanma](docs/Real_Test_baglanma.md)
 
 * [realsense kamera kalibrasyonu](docs/realsense_kamera_kalibrasyonu.md)

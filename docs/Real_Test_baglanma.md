@@ -1,5 +1,7 @@
-# Real ortamda başlatma
+# Real Test bağlanma
 
+### Telemetri ile araca bağlanma
+Yer kontrol istasyonuna telemtri takılır araç üzerindeki telemetriden yer bilgisayarına veriler telemetri aracılığıyla aktarılır.
 ```
 mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550 --console
 # yeni terminalde
@@ -9,7 +11,7 @@ sudo ssh gokmen@192.168.43.163 // burada ifconfig ile bağlanılacak pc den adre
 rostopic echo /mavros/vision_pose/pose
 ```
 
-Bilgisayardan bilgisayara ROS bağlantısı sağlama(.bashrc yazılması gereken):
+### Bilgisayardan bilgisayara ROS bağlantısı sağlama(.bashrc yazılması gereken):
 ```
 ifconfig ile ip öğrenip düzenlenmesi gerekiyor
 # Master ros konusu yayıcak bilgisayarın ip'si
@@ -18,17 +20,16 @@ export ROS_MASTER_URI=http://192.168.182.41:11311
 export ROS_IP=192.168.182.41
 ```
 
-Araç üzerinden gelen kamera görüntüsünü ros ile görüntüleyebilmek için:
+### Araç üzerinden gelen kamera görüntüsünü ros ile görüntüleyebilmek için:
 ```
 cd gps-denied_tutorials/launch
 roslaunch usb_cam-test.launch
 ```
-Raspberry Pi üzerinde ssh ile açlıştırılması gerekiyor:
+
+### Raspberry Pi üzerinden ssh ile çalıştırma:
 
 ```
 mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550
-# yeni terminal
-roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB0:57600
+# yeni terminal çakışmaları önlemek için apm aşağıdaki şekilde çalıştırılması gerekiyor.
 roslaunch mavros apm.launch fcu_url:=udp://0.0.0.0:14550@5760
-
 ```
