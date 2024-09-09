@@ -17,7 +17,7 @@ class Args:
 
 args = Args()
 
-network = "fcn-resnet18-deepscene-864x480"
+network = "fcn-resnet18-cityscapes-512x256"
 alpha = 150 # 0 to 255
 
 def image_callback(data):
@@ -55,7 +55,7 @@ def main():
     bridge = CvBridge()
 
     pub = rospy.Publisher('/segnet_image', Image, queue_size=10)
-    rospy.Subscriber("/usb_cam/image_raw", Image, image_callback)
+    rospy.Subscriber("/webcam/image_raw", Image, image_callback)
     rospy.spin()
 
 if __name__ == '__main__':

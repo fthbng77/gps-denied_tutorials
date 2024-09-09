@@ -1,0 +1,4937 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <physics type='ode'>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>100</iters>
+          <sor>1</sor>
+          <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.9</erp>
+          <contact_max_correcting_vel>0.1</contact_max_correcting_vel>
+          <contact_surface_layer>0</contact_surface_layer>
+        </constraints>
+      </ode>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.25 0.25 0.25 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>5000 5000</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='runway'>
+          <pose>0 0 0.005 0 -0 0</pose>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1829 45</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Runway</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='grass'>
+          <pose>0 0 -0.1 0 -0 0</pose>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>5000 5000</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grass</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='iris'>
+      <frame name='drone_with_camera::__model__' attached_to='drone_with_camera::iris::base_link'>
+        <pose relative_to='__model__'>0 0 0 0 -0 0</pose>
+      </frame>
+      <frame name='drone_with_camera::iris::__model__' attached_to='drone_with_camera::iris::base_link'>
+        <pose relative_to='drone_with_camera::__model__'>0 0 0.194923 0 -0 0</pose>
+      </frame>
+      <link name='drone_with_camera::iris::base_link'>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>1.5</mass>
+          <inertia>
+            <ixx>0.008</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.015</iyy>
+            <iyz>0</iyz>
+            <izz>0.017</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_link_collision_fl'>
+          <pose>0.13 0.22 -0.08 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.18</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <max_vel>100</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_collision_fr'>
+          <pose>0.13 -0.22 -0.08 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.18</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <max_vel>100</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_collision_br'>
+          <pose>-0.13 -0.22 -0.08 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.18</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <max_vel>100</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='base_link_collision_bl'>
+          <pose>-0.13 0.22 -0.08 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.18</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <max_vel>100</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='base_link_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://iris_base/meshes/iris.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='front_left_leg_visual'>
+          <pose>0.123 0.22 -0.11 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.17</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/FlatBlack</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='front_right_leg_visual'>
+          <pose>0.123 -0.22 -0.11 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.17</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/FlatBlack</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='rear_left_leg_visual'>
+          <pose>-0.14 0.21 -0.11 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.17</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/FlatBlack</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='rear_right_leg_visual'>
+          <pose>-0.14 -0.21 -0.11 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.17</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/FlatBlack</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <pose relative_to='drone_with_camera::iris::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='drone_with_camera::iris::iris/ground_truth/odometry_sensorgt_link'>
+        <pose relative_to='drone_with_camera::iris::__model__'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.15</mass>
+          <inertia>
+            <ixx>0.0001</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0002</iyy>
+            <iyz>0</iyz>
+            <izz>0.0002</izz>
+          </inertia>
+        </inertial>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='drone_with_camera::iris::iris/ground_truth/odometry_sensorgt_joint' type='revolute'>
+        <child>drone_with_camera::iris::iris/ground_truth/odometry_sensorgt_link</child>
+        <parent>drone_with_camera::iris::base_link</parent>
+        <axis>
+          <xyz expressed_in='drone_with_camera::iris::__model__'>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <implicit_spring_damper>1</implicit_spring_damper>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='drone_with_camera::iris::iris/imu_link'>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.15</mass>
+          <inertia>
+            <ixx>1e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2e-05</iyy>
+            <iyz>0</iyz>
+            <izz>2e-05</izz>
+          </inertia>
+        </inertial>
+        <sensor name='imu_sensor' type='imu'>
+          <pose>0 0 0 -3.14159 -0 0</pose>
+          <always_on>1</always_on>
+          <update_rate>1000</update_rate>
+          <imu/>
+        </sensor>
+        <pose relative_to='drone_with_camera::iris::__model__'>0 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='drone_with_camera::iris::iris/imu_joint' type='revolute'>
+        <child>drone_with_camera::iris::iris/imu_link</child>
+        <parent>drone_with_camera::iris::base_link</parent>
+        <axis>
+          <xyz expressed_in='drone_with_camera::iris::__model__'>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <damping>1</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <implicit_spring_damper>1</implicit_spring_damper>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='drone_with_camera::iris::rotor_0'>
+        <pose relative_to='drone_with_camera::iris::__model__'>0.13 -0.22 0.023 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.025</mass>
+          <inertia>
+            <ixx>9.75e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000166704</iyy>
+            <iyz>0</iyz>
+            <izz>0.000167604</izz>
+          </inertia>
+        </inertial>
+        <collision name='rotor_0_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.005</length>
+              <radius>0.1</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rotor_0_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>model://iris_base/meshes/iris_prop_ccw.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Blue</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='drone_with_camera::iris::rotor_0_joint' type='revolute'>
+        <child>drone_with_camera::iris::rotor_0</child>
+        <parent>drone_with_camera::iris::base_link</parent>
+        <axis>
+          <xyz expressed_in='drone_with_camera::iris::__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.004</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <implicit_spring_damper>1</implicit_spring_damper>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='drone_with_camera::iris::rotor_1'>
+        <pose relative_to='drone_with_camera::iris::__model__'>-0.13 0.2 0.023 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.025</mass>
+          <inertia>
+            <ixx>9.75e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000166704</iyy>
+            <iyz>0</iyz>
+            <izz>0.000167604</izz>
+          </inertia>
+        </inertial>
+        <collision name='rotor_1_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.005</length>
+              <radius>0.1</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rotor_1_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>model://iris_base/meshes/iris_prop_ccw.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='drone_with_camera::iris::rotor_1_joint' type='revolute'>
+        <child>drone_with_camera::iris::rotor_1</child>
+        <parent>drone_with_camera::iris::base_link</parent>
+        <axis>
+          <xyz expressed_in='drone_with_camera::iris::__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.004</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <implicit_spring_damper>1</implicit_spring_damper>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='drone_with_camera::iris::rotor_2'>
+        <pose relative_to='drone_with_camera::iris::__model__'>0.13 0.22 0.023 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.025</mass>
+          <inertia>
+            <ixx>9.75e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000166704</iyy>
+            <iyz>0</iyz>
+            <izz>0.000167604</izz>
+          </inertia>
+        </inertial>
+        <collision name='rotor_2_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.005</length>
+              <radius>0.1</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rotor_2_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>model://iris_base/meshes/iris_prop_cw.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Blue</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='drone_with_camera::iris::rotor_2_joint' type='revolute'>
+        <child>drone_with_camera::iris::rotor_2</child>
+        <parent>drone_with_camera::iris::base_link</parent>
+        <axis>
+          <xyz expressed_in='drone_with_camera::iris::__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.004</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <implicit_spring_damper>1</implicit_spring_damper>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <link name='drone_with_camera::iris::rotor_3'>
+        <pose relative_to='drone_with_camera::iris::__model__'>-0.13 -0.2 0.023 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 -0 0</pose>
+          <mass>0.025</mass>
+          <inertia>
+            <ixx>9.75e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000166704</iyy>
+            <iyz>0</iyz>
+            <izz>0.000167604</izz>
+          </inertia>
+        </inertial>
+        <collision name='rotor_3_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.005</length>
+              <radius>0.1</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='rotor_3_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>model://iris_base/meshes/iris_prop_cw.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/DarkGrey</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='drone_with_camera::iris::rotor_3_joint' type='revolute'>
+        <child>drone_with_camera::iris::rotor_3</child>
+        <parent>drone_with_camera::iris::base_link</parent>
+        <axis>
+          <xyz expressed_in='drone_with_camera::iris::__model__'>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0.004</damping>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+        <physics>
+          <ode>
+            <implicit_spring_damper>1</implicit_spring_damper>
+            <limit>
+              <cfm>0</cfm>
+              <erp>0.2</erp>
+            </limit>
+          </ode>
+        </physics>
+      </joint>
+      <static>0</static>
+      <link name='drone_with_camera::cam_link'>
+        <pose relative_to='drone_with_camera::__model__'>0 0 -0.02 0 -0 0</pose>
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>0.001</ixx>
+            <iyy>0.001</iyy>
+            <izz>0.001</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <visual name='drone_with_camera::cam_link'>
+          <pose>0 0 0.15 0 1.5707 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.005</radius>
+              <length>0.018</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <sensor name='cam' type='camera'>
+          <pose>0 0 0.15 0 -0 0</pose>
+          <camera>
+            <horizontal_fov>1.2</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>1000</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+          <visualize>1</visualize>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <always_on>1</always_on>
+            <update_rate>30</update_rate>
+            <cameraName>webcam</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera_link</frameName>
+          </plugin>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='drone_with_camera::camera_mount' type='fixed'>
+        <child>drone_with_camera::cam_link</child>
+        <parent>drone_with_camera::iris::base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>
+      </joint>
+      <plugin name='rotor_0_blade_1' filename='libLiftDragPlugin.so'>
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>0.10</cda>
+        <cma>0.00</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>0.084 0 0</cp>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>drone_with_camera::iris::rotor_0</link_name>
+      </plugin>
+      <plugin name='rotor_0_blade_2' filename='libLiftDragPlugin.so'>
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>0.10</cda>
+        <cma>0.00</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>-0.084 0 0</cp>
+        <forward>0 -1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>drone_with_camera::iris::rotor_0</link_name>
+      </plugin>
+      <plugin name='rotor_1_blade_1' filename='libLiftDragPlugin.so'>
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>0.10</cda>
+        <cma>0.00</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>0.084 0 0</cp>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>drone_with_camera::iris::rotor_1</link_name>
+      </plugin>
+      <plugin name='rotor_1_blade_2' filename='libLiftDragPlugin.so'>
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>0.10</cda>
+        <cma>0.00</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>-0.084 0 0</cp>
+        <forward>0 -1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>drone_with_camera::iris::rotor_1</link_name>
+      </plugin>
+      <plugin name='rotor_2_blade_1' filename='libLiftDragPlugin.so'>
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>0.10</cda>
+        <cma>0.00</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>0.084 0 0</cp>
+        <forward>0 -1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>drone_with_camera::iris::rotor_2</link_name>
+      </plugin>
+      <plugin name='rotor_2_blade_2' filename='libLiftDragPlugin.so'>
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>0.10</cda>
+        <cma>0.00</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>-0.084 0 0</cp>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>drone_with_camera::iris::rotor_2</link_name>
+      </plugin>
+      <plugin name='rotor_3_blade_1' filename='libLiftDragPlugin.so'>
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>0.10</cda>
+        <cma>0.00</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>0.084 0 0</cp>
+        <forward>0 -1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>drone_with_camera::iris::rotor_3</link_name>
+      </plugin>
+      <plugin name='rotor_3_blade_2' filename='libLiftDragPlugin.so'>
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>0.10</cda>
+        <cma>0.00</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>-0.084 0 0</cp>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>drone_with_camera::iris::rotor_3</link_name>
+      </plugin>
+      <plugin name='arducopter_plugin' filename='libArduPilotPlugin.so'>
+        <fdm_addr>127.0.0.1</fdm_addr>
+        <fdm_port_in>9002</fdm_port_in>
+        <fdm_port_out>9003</fdm_port_out>
+        <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
+        <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
+        <imuName>drone_with_camera::iris::iris/imu_link::imu_sensor</imuName>
+        <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+        <control channel='0'>
+          <type>VELOCITY</type>
+          <offset>0</offset>
+          <p_gain>0.20</p_gain>
+          <i_gain>0</i_gain>
+          <d_gain>0</d_gain>
+          <i_max>0</i_max>
+          <i_min>0</i_min>
+          <cmd_max>2.5</cmd_max>
+          <cmd_min>-2.5</cmd_min>
+          <jointName>drone_with_camera::iris::rotor_0_joint</jointName>
+          <multiplier>838</multiplier>
+          <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+        </control>
+        <control channel='1'>
+          <type>VELOCITY</type>
+          <offset>0</offset>
+          <p_gain>0.20</p_gain>
+          <i_gain>0</i_gain>
+          <d_gain>0</d_gain>
+          <i_max>0</i_max>
+          <i_min>0</i_min>
+          <cmd_max>2.5</cmd_max>
+          <cmd_min>-2.5</cmd_min>
+          <jointName>drone_with_camera::iris::rotor_1_joint</jointName>
+          <multiplier>838</multiplier>
+          <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+        </control>
+        <control channel='2'>
+          <type>VELOCITY</type>
+          <offset>0</offset>
+          <p_gain>0.20</p_gain>
+          <i_gain>0</i_gain>
+          <d_gain>0</d_gain>
+          <i_max>0</i_max>
+          <i_min>0</i_min>
+          <cmd_max>2.5</cmd_max>
+          <cmd_min>-2.5</cmd_min>
+          <jointName>drone_with_camera::iris::rotor_2_joint</jointName>
+          <multiplier>-838</multiplier>
+          <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+        </control>
+        <control channel='3'>
+          <type>VELOCITY</type>
+          <offset>0</offset>
+          <p_gain>0.20</p_gain>
+          <i_gain>0</i_gain>
+          <d_gain>0</d_gain>
+          <i_max>0</i_max>
+          <i_min>0</i_min>
+          <cmd_max>2.5</cmd_max>
+          <cmd_min>-2.5</cmd_min>
+          <jointName>drone_with_camera::iris::rotor_3_joint</jointName>
+          <multiplier>-838</multiplier>
+          <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+        </control>
+      </plugin>
+      <pose>0 0 0 0 -0 0</pose>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='sidewalk'>
+      <pose>-444.733 -1.73758 0 0 -0 0</pose>
+      <link name='Wall_1'>
+        <collision name='Wall_1_Collision'>
+          <geometry>
+            <box>
+              <size>600 3 0.2</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.1 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_1_Visual'>
+          <pose>0 0 0.1 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>600 3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+          <meta>
+            <layer>0</layer>
+          </meta>
+        </visual>
+        <pose>-144.733 -0.237575 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name='sidewalk_0'>
+      <pose>69.7155 24.2409 0 0 -0 0</pose>
+      <link name='Wall_1'>
+        <collision name='Wall_1_Collision'>
+          <geometry>
+            <box>
+              <size>600 3 0.2</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.1 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_1_Visual'>
+          <pose>0 0 0.1 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>600 3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+          <meta>
+            <layer>0</layer>
+          </meta>
+        </visual>
+        <pose>-144.733 -0.237575 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <model name='oak_tree'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>70.5563 -27.5597 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_0'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>90.9432 -27.6038 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_1'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>111.191 -27.2251 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_2'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>69.2607 28.4175 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_3'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>91.052 28.3469 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_4'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>112.234 28.3804 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_5'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>135.703 28.396 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_6'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>134.652 -28.1032 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_7'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>159.166 27.8159 0 0 -0 0</pose>
+    </model>
+    <model name='oak_tree_8'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='branch'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Branch</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Branch</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='bark'>
+          <geometry>
+            <mesh>
+              <uri>model://oak_tree/meshes/oak_tree.dae</uri>
+              <submesh>
+                <name>Bark</name>
+              </submesh>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://oak_tree/materials/scripts/</uri>
+              <uri>model://oak_tree/materials/textures/</uri>
+              <name>OakTree/Bark</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>158.732 -27.7943 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>40.4441 -13.5501 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_0'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>40.2271 -18.1757 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_1'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>48.2904 -10.7228 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_2'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>32.8417 -2.49709 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_3'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>41.3381 -3.30018 0 0 -0 0</pose>
+    </model>
+    <model name='person_standing'>
+      <link name='link'>
+        <inertial>
+          <pose>0 -0.1 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>24.88</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>25.73</iyy>
+            <iyz>0</iyz>
+            <izz>2.48</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 -0.1 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>39.3103 -8.14754 0 0 -0 0</pose>
+    </model>
+    <model name='person_standing_0'>
+      <link name='link'>
+        <inertial>
+          <pose>0 -0.1 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>24.88</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>25.73</iyy>
+            <iyz>0</iyz>
+            <izz>2.48</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 -0.1 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>45.2533 -5.8065 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_4'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>43.1702 -11.9503 0 0 -0 0</pose>
+    </model>
+    <model name='person_standing_1'>
+      <link name='link'>
+        <inertial>
+          <pose>0 -0.1 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>24.88</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>25.73</iyy>
+            <iyz>0</iyz>
+            <izz>2.48</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 -0.1 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>33.1279 -12.1962 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_5'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>38.4331 -10.4396 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_6'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>36.374 -7.71201 0 0 -0 0</pose>
+    </model>
+    <model name='person_standing_2'>
+      <link name='link'>
+        <inertial>
+          <pose>0 -0.1 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>24.88</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>25.73</iyy>
+            <iyz>0</iyz>
+            <izz>2.48</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 -0.1 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>39.3367 -4.75826 0 0 -0 0</pose>
+    </model>
+    <model name='person_standing_3'>
+      <link name='link'>
+        <inertial>
+          <pose>0 -0.1 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>24.88</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>25.73</iyy>
+            <iyz>0</iyz>
+            <izz>2.48</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 -0.1 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>43.1984 -8.32522 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_7'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>35.5234 -6.58538 0 0 -0 0</pose>
+    </model>
+    <model name='person_standing_4'>
+      <link name='link'>
+        <inertial>
+          <pose>0 -0.1 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>24.88</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>25.73</iyy>
+            <iyz>0</iyz>
+            <izz>2.48</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 -0.1 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>36.6062 -12.7244 0 0 -0 0</pose>
+    </model>
+    <model name='person_walking_8'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_walking/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>33.1065 -9.13075 0 0 -0 0</pose>
+    </model>
+    <model name='person_standing_5'>
+      <link name='link'>
+        <inertial>
+          <pose>0 -0.1 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>24.88</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>25.73</iyy>
+            <iyz>0</iyz>
+            <izz>2.48</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 -0.1 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>35.6336 -9.85782 0 0 -0 0</pose>
+    </model>
+    <model name='pickup'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>38.0722 7.86882 0 0 -0 0</pose>
+    </model>
+    <model name='pickup_0'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>65.9495 -8.22324 0 0 -0 0</pose>
+    </model>
+    <model name='pickup_1'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>106.677 -1.97799 0 0 -0 0</pose>
+    </model>
+    <model name='pickup_2'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <uri>model://pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>129.849 8.54866 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>1715 393000000</sim_time>
+      <real_time>192 39987116</real_time>
+      <wall_time>1725555062 859581657</wall_time>
+      <iterations>85967</iterations>
+      <model name='House 1'>
+        <pose>252.667 31.663 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>252.667 31.663 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='House 2'>
+        <pose>375.269 -31.7476 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>375.269 -31.7476 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='House 3'>
+        <pose>179.983 -29.3179 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>179.983 -29.3179 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ambulance'>
+        <pose>86.7845 -1.91036 0.152797 0.0983 -0.045386 1.58871</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>86.7845 -1.91036 0.152797 0.0983 -0.045386 1.58871</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='fire_station'>
+        <pose>251.046 -31.2047 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>251.046 -31.2047 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='fire_station_0'>
+        <pose>335.884 32.0506 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>335.884 32.0506 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='fire_station_1'>
+        <pose>184.797 31.5956 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>184.797 31.5956 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='fire_truck'>
+        <pose>135.69 -3.53 9.89305 0.037892 -0.027896 -1.5734</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>135.69 -3.53 9.89305 0.037892 -0.027896 -1.5734</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='grocery_store'>
+        <pose>112.12 -38.2332 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>112.12 -38.2332 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane_0'>
+        <pose>225.825 -140.65 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>225.825 -140.65 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='iris'>
+        <pose>-3e-06 1e-06 -0.025052 1.9e-05 0.000151 0</pose>
+        <scale>1 1 1</scale>
+        <link name='drone_with_camera::cam_link'>
+          <pose>-6e-06 1e-06 -0.045052 1.9e-05 0.000151 0</pose>
+          <velocity>0 0 -0 0 -0 0</velocity>
+          <acceleration>-0 0 0 0 -0 0</acceleration>
+          <wrench>-0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='drone_with_camera::iris::base_link'>
+          <pose>2.6e-05 -3e-06 0.169871 1.9e-05 0.000151 0</pose>
+          <velocity>-0 -0 -0 0 -0 0</velocity>
+          <acceleration>-0 0 -0 0 -0 0</acceleration>
+          <wrench>-0 0 -0 0 -0 0</wrench>
+        </link>
+        <link name='drone_with_camera::iris::iris/ground_truth/odometry_sensorgt_link'>
+          <pose>2.6e-05 -3e-06 0.169871 1.9e-05 0.000151 0</pose>
+          <velocity>-0 -0 -0 0 -0 0</velocity>
+          <acceleration>-0 0 0 0 -0 1e-06</acceleration>
+          <wrench>-0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='drone_with_camera::iris::iris/imu_link'>
+          <pose>2.6e-05 -3e-06 0.169871 1.9e-05 0.000151 0</pose>
+          <velocity>-0 -0 -0 0 -0 0</velocity>
+          <acceleration>-0 0 -0 0 0 -1e-06</acceleration>
+          <wrench>-0 0 -0 0 -0 0</wrench>
+        </link>
+        <link name='drone_with_camera::iris::rotor_0'>
+          <pose>0.130029 -0.220004 0.192847 1.9e-05 0.000151 -0.0032</pose>
+          <velocity>-0 -0 -0 0 -0 0</velocity>
+          <acceleration>-0 0 -0 0 -0 0</acceleration>
+          <wrench>-0 0 -0 0 -0 0</wrench>
+        </link>
+        <link name='drone_with_camera::iris::rotor_1'>
+          <pose>-0.129971 0.199996 0.192894 1.9e-05 0.000151 -0.003201</pose>
+          <velocity>-0 -0 0 0 -0 0</velocity>
+          <acceleration>-0 -0 -0 0 -0 0</acceleration>
+          <wrench>-0 -0 -0 0 -0 0</wrench>
+        </link>
+        <link name='drone_with_camera::iris::rotor_2'>
+          <pose>0.130029 0.219996 0.192856 2e-05 0.000151 0.003172</pose>
+          <velocity>-0 -0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='drone_with_camera::iris::rotor_3'>
+          <pose>-0.129971 -0.200004 0.192887 2e-05 0.000151 0.003174</pose>
+          <velocity>-0 -0 -0 0 -0 0</velocity>
+          <acceleration>-0 0 0 0 -0 0</acceleration>
+          <wrench>-0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree'>
+        <pose>70.5563 -27.5597 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>70.5563 -27.5597 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_0'>
+        <pose>233.231 -28.7865 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>233.231 -28.7865 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_1'>
+        <pose>224.571 27.4991 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>224.571 27.4991 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_2'>
+        <pose>69.2607 28.4175 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>69.2607 28.4175 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_3'>
+        <pose>91.052 28.3469 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>91.052 28.3469 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_4'>
+        <pose>112.234 28.3804 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>112.234 28.3804 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_5'>
+        <pose>135.703 28.396 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>135.703 28.396 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_6'>
+        <pose>209.311 -28.4369 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>209.311 -28.4369 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_7'>
+        <pose>159.166 27.8159 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>159.166 27.8159 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='oak_tree_8'>
+        <pose>158.732 -27.7943 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>158.732 -27.7943 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_standing'>
+        <pose>42.4347 -23.6462 0.2 -0 -0 -0.000364</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>42.4347 -23.6462 0.2 -0 -0 -0.000364</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 -0 -0 0 -0 0</acceleration>
+          <wrench>0 -0 -0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_standing_0'>
+        <pose>49.6666 -23.6856 0.2 -2e-06 0 0.000147</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>49.6666 -23.6856 0.2 -2e-06 0 0.000147</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.000668 -1.46199 0.871614 1.53899 -0.000564 0.002199</acceleration>
+          <wrench>-0.053428 -116.959 69.7291 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_standing_1'>
+        <pose>48.2686 24.3382 0.2 0 -0 0.000165</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>48.2686 24.3382 0.2 0 -0 0.000165</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0 0 0 -0 -0 -0</acceleration>
+          <wrench>-0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_standing_2'>
+        <pose>39.1911 21.3862 0 1e-06 -1e-06 -4.1e-05</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>39.1911 21.3862 0 1e-06 -1e-06 -4.1e-05</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>2.20049 1.53465 1.49477 1.47425 0.861623 -3.09676</acceleration>
+          <wrench>176.039 122.772 119.582 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_standing_3'>
+        <pose>26.2359 -21.0198 -0 1e-06 1e-06 0.001468</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>26.2359 -21.0198 -0 1e-06 1e-06 0.001468</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>1.61164 -1.13017 -1.51238 -1.94007 1.45329 -3.09685</acceleration>
+          <wrench>128.932 -90.4136 -120.991 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_standing_4'>
+        <pose>58.0181 23.3946 0.199999 -1e-06 -1e-06 1e-05</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>58.0181 23.3946 0.199999 -1e-06 -1e-06 1e-05</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-1.63148 1.14763 -1.4019 1.92169 -1.43267 -3.09621</acceleration>
+          <wrench>-130.518 91.8108 -112.152 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_standing_5'>
+        <pose>62.7255 -21.4678 -0 1e-06 1e-06 0.000207</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>62.7255 -21.4678 -0 1e-06 1e-06 0.000207</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>1.61354 -1.13454 -1.4953 -1.93553 1.45138 -3.09676</acceleration>
+          <wrench>129.083 -90.7629 -119.624 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking'>
+        <pose>30.3784 -23.864 0.2 0 0 -0.001549</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>30.3784 -23.864 0.2 0 0 -0.001549</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0 -0 0 0 -0 0</acceleration>
+          <wrench>-0 -0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_0'>
+        <pose>40.6634 -23.5291 0.2 0 0 -0.000381</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>40.6634 -23.5291 0.2 0 0 -0.000381</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0 0 -0 0 -0 0</acceleration>
+          <wrench>-0 0 -0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_1'>
+        <pose>55.8082 -23.6824 0.2 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>55.8082 -23.6824 0.2 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -0 0 -0 0</acceleration>
+          <wrench>0 0 -0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_2'>
+        <pose>28.9713 23.9985 0.2 0 0 -0.000978</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>28.9713 23.9985 0.2 0 0 -0.000978</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0 -0 0 0 -0 0</acceleration>
+          <wrench>-0 -0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_3'>
+        <pose>41.2957 24.2402 0.2 0 -0 0.000231</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>41.2957 24.2402 0.2 0 -0 0.000231</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0 0 0 -0 -0 -0</acceleration>
+          <wrench>-0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_4'>
+        <pose>64.8644 19.8008 -1e-06 -2e-06 1e-06 -0.00377</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>64.8644 19.8008 -1e-06 -2e-06 1e-06 -0.00377</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.970149 2.02447 -2.7004 -2.11102 1.06181 0.105443</acceleration>
+          <wrench>77.6119 161.957 -216.032 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_5'>
+        <pose>54.8178 24.405 0.2 0 1e-06 0.001639</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>54.8178 24.405 0.2 0 1e-06 0.001639</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>1.27079 0.001791 -0.524169 -0.002122 1.33767 -1.6e-05</acceleration>
+          <wrench>101.663 0.143303 -41.9335 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_6'>
+        <pose>10.8294 24.0658 0.2 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>10.8294 24.0658 0.2 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -0 0 -0 0</acceleration>
+          <wrench>0 0 -0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_7'>
+        <pose>52.1168 -17.7841 -1e-06 2e-06 1e-06 -0.001077</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>52.1168 -17.7841 -1e-06 2e-06 1e-06 -0.001077</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0.959732 -2.02788 -2.7048 2.11537 1.05213 -0.10537</acceleration>
+          <wrench>76.7785 -162.231 -216.384 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='person_walking_8'>
+        <pose>29.2497 16.9966 -1e-06 2e-06 -1e-06 -0.002794</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>29.2497 16.9966 -1e-06 2e-06 -1e-06 -0.002794</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.967119 -2.0232 -2.70813 2.10986 -1.05884 0.105324</acceleration>
+          <wrench>-77.3696 -161.856 -216.651 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='pickup'>
+        <pose>38.0722 7.86882 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>38.0722 7.86882 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='pickup_0'>
+        <pose>65.9495 -8.22324 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>65.9495 -8.22324 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='pickup_1'>
+        <pose>106.677 -1.97799 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>106.677 -1.97799 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='pickup_2'>
+        <pose>129.849 8.54866 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>129.849 8.54866 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='sidewalk'>
+        <pose>376.363 -23.7596 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='Wall_1'>
+          <pose>231.63 -23.9972 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='sidewalk_0'>
+        <pose>374.531 24.2414 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='Wall_1'>
+          <pose>229.798 24.0038 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='suv'>
+        <pose>97.0258 2.15584 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>97.0258 2.15584 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='suv_0'>
+        <pose>125.463 -8.23159 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>125.463 -8.23159 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='suv_1'>
+        <pose>54.7483 -2.93922 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>54.7483 -2.93922 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>44.0367 -2.48712 32.2589 0 0.641803 0.004206</pose>
+        <view_controller>ortho</view_controller>
+        <projection_type>orthographic</projection_type>
+      </camera>
+    </gui>
+    <model name='ambulance'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <scale>0.0254 0.0254 0.0254</scale>
+              <uri>model://ambulance/meshes/ambulance.obj</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>0.0254 0.0254 0.0254</scale>
+              <uri>model://ambulance/meshes/ambulance.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>86.8553 -5.17857 0 0 -0 0</pose>
+    </model>
+    <model name='fire_station'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='main'>
+          <pose>0 -0.135 5 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>19.98 9.68 10</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='front_top'>
+          <pose>0 4.957 7 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>20 0.515 6</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_0'>
+          <pose>9.333 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.315 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_1'>
+          <pose>3.33 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>2.63 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_2'>
+          <pose>-3.33 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>2.63 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_3'>
+          <pose>-9.333 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.315 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_back'>
+          <pose>0 -2.742 10.467 0.25 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.12 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_front'>
+          <pose>0 3.12 10.467 -0.25 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.12 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_base'>
+          <pose>0 0.188 9.705 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 11.86 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_0'>
+          <pose>0 0.188 9.985 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 9.53 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_1'>
+          <pose>0 0.188 10.14 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 8.41 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_2'>
+          <pose>0 0.188 10.42 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.25 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_3'>
+          <pose>0 0.188 10.7 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 4.05 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_4'>
+          <pose>0 0.188 10.98 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 1.83 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://fire_station/meshes/fire_station.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>113.902 -41.464 0 0 -0 0</pose>
+    </model>
+    <model name='fire_station_0'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='main'>
+          <pose>0 -0.135 5 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>19.98 9.68 10</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='front_top'>
+          <pose>0 4.957 7 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>20 0.515 6</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_0'>
+          <pose>9.333 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.315 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_1'>
+          <pose>3.33 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>2.63 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_2'>
+          <pose>-3.33 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>2.63 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_3'>
+          <pose>-9.333 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.315 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_back'>
+          <pose>0 -2.742 10.467 0.25 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.12 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_front'>
+          <pose>0 3.12 10.467 -0.25 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.12 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_base'>
+          <pose>0 0.188 9.705 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 11.86 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_0'>
+          <pose>0 0.188 9.985 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 9.53 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_1'>
+          <pose>0 0.188 10.14 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 8.41 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_2'>
+          <pose>0 0.188 10.42 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.25 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_3'>
+          <pose>0 0.188 10.7 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 4.05 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_4'>
+          <pose>0 0.188 10.98 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 1.83 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://fire_station/meshes/fire_station.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>163.667 -60.5277 0 0 -0 0</pose>
+    </model>
+    <model name='fire_station_1'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='main'>
+          <pose>0 -0.135 5 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>19.98 9.68 10</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='front_top'>
+          <pose>0 4.957 7 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>20 0.515 6</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_0'>
+          <pose>9.333 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.315 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_1'>
+          <pose>3.33 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>2.63 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_2'>
+          <pose>-3.33 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>2.63 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='column_3'>
+          <pose>-9.333 4.957 2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1.315 0.515 4</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_back'>
+          <pose>0 -2.742 10.467 0.25 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.12 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_front'>
+          <pose>0 3.12 10.467 -0.25 0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.12 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_base'>
+          <pose>0 0.188 9.705 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 11.86 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_0'>
+          <pose>0 0.188 9.985 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 9.53 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_1'>
+          <pose>0 0.188 10.14 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 8.41 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_2'>
+          <pose>0 0.188 10.42 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 6.25 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_3'>
+          <pose>0 0.188 10.7 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 4.05 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='roof_filling_4'>
+          <pose>0 0.188 10.98 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>21.47 1.83 0.28</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://fire_station/meshes/fire_station.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>186.575 31.123 0 0 -0 0</pose>
+    </model>
+    <model name='fire_truck'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <scale>0.1 0.1 0.1</scale>
+              <uri>model://fire_truck/meshes/fire_truck.obj</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>0.1 0.1 0.1</scale>
+              <uri>model://fire_truck/meshes/fire_truck.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>179.786 -5.2435 0 0 -0 0</pose>
+    </model>
+    <model name='House 1'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://house_1/meshes/house_1.dae</uri>
+              <scale>1.5 1.5 1.5</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://house_1/meshes/house_1.dae</uri>
+              <scale>1.5 1.5 1.5</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://house_1/materials/scripts</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_1/Diffuse</name>
+            </script>
+            <shader type='normal_map_tangent_space'>
+              <normal_map>House_1_Normal.png</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>304.716 32.6844 0 0 -0 0</pose>
+    </model>
+    <model name='House 2'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://house_2/meshes/house_2.dae</uri>
+              <scale>1.5 1.5 1.5</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://house_2/meshes/house_2.dae</uri>
+              <scale>1.5 1.5 1.5</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://house_2/materials/scripts</uri>
+              <uri>model://house_2/materials/textures</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_2/Diffuse</name>
+            </script>
+            <shader type='normal_map_tangent_space'>
+              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>375.269 -31.7476 0 0 -0 0</pose>
+    </model>
+    <model name='House 3'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://house_3/meshes/house_3.dae</uri>
+              <scale>1.5 1.5 1.5</scale>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://house_3/meshes/house_3.dae</uri>
+              <scale>1.5 1.5 1.5</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://house_3/materials/scripts</uri>
+              <uri>model://house_3/materials/textures</uri>
+              <uri>model://house_1/materials/textures</uri>
+              <name>House_3/Diffuse</name>
+            </script>
+            <shader type='normal_map_tangent_space'>
+              <normal_map>model://house_1/materials/textures/House_1_Normal.png</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>179.983 -29.3179 0 0 -0 0</pose>
+    </model>
+    <model name='grocery_store'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 4.04605 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>32.1985 17.5425 8.09209</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 -1.96155 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://grocery_store/meshes/grocery_store.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>179.82 -60.4448 0 0 -0 0</pose>
+    </model>
+    <model name='suv'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.06 0.06 0.06</scale>
+              <uri>model://suv/meshes/suv.obj</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.06 0.06 0.06</scale>
+              <uri>model://suv/meshes/suv.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>97.0258 2.15584 0 0 -0 0</pose>
+    </model>
+    <model name='suv_0'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.06 0.06 0.06</scale>
+              <uri>model://suv/meshes/suv.obj</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.06 0.06 0.06</scale>
+              <uri>model://suv/meshes/suv.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>125.463 -8.23159 0 0 -0 0</pose>
+    </model>
+    <model name='suv_1'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.06 0.06 0.06</scale>
+              <uri>model://suv/meshes/suv.obj</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0 0 0 -1.5708</pose>
+          <geometry>
+            <mesh>
+              <scale>0.06 0.06 0.06</scale>
+              <uri>model://suv/meshes/suv.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>54.7483 -2.93922 0 0 -0 0</pose>
+    </model>
+  </world>
+</sdf>
