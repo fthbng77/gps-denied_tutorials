@@ -9,8 +9,8 @@ from std_msgs.msg import Float32
 class ImageConverter:
     def __init__(self):
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("/webcam/image_raw", Image, self.callback)
-        self.distance_pub = rospy.Publisher("/tracking_deviation", Float32, queue_size=10)
+        self.image_sub = rospy.Subscriber("/usb_cam/image_raw", Image, self.callback)
+        self.distance_pub = rospy.Publisher("/tracking_deviation", Float32, queue_size=10)  # Create a publisher
 
     def callback(self, data):
         # Convert the image from ROS message to cv2 object
@@ -19,10 +19,12 @@ class ImageConverter:
         # Get the portion of the image to be segmented
         x1, y1, x2, y2 = 0, 380, 639, 479
         roi = cv_image[y1:y2, x1:x2]
+        # Görüntüyü HSV renk uzayına dönüştür
         hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
 
-        lower_hsv = (0, 80, 80)
-        upper_hsv = (22, 255, 255)
+        # yol için sınır değerleri belirle
+        lower_hsv = (0, 0, 50)
+        upper_hsv = (179, 50, 255)
 
         # Belirlenen sınırlar arasındaki renkler maskelenir
         mask = cv2.inRange(hsv, lower_hsv, upper_hsv)

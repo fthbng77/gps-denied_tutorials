@@ -1,14 +1,18 @@
 <launch>
     <!-- Simülasyon zamanını kullan -->
-    <param name="use_sim_time" value="true"/>
+    <param name="use_sim_time" value="false"/>
+
+    <!-- Sıkıştırılmış görüntüleri düz görüntülere dönüştürmek için düğüm -->
+    <node name="decompress_image" pkg="image_transport" type="republish" args="compressed in:=/webcam/image_raw/compressed raw out:=/webcam/image_raw"/>
 
     <!-- ORB_SLAM3 Ana Düğümü -->
     <node name="orb_slam3" pkg="orb_slam3_ros" type="ros_mono" output="screen">
+        <!-- Düz görüntüleri almak için topic -->
         <remap from="/camera/image_raw" to="/webcam/image_raw"/>
 
         <!-- ORB-SLAM3 için parametreler -->
         <param name="voc_file" type="string" value="$(find orb_slam3_ros)/orb_slam3/Vocabulary/ORBvoc.txt.bin"/>
-        <param name="settings_file" type="string" value="$(find orb_slam3_ros)/config/Monocular/gazebo.yaml"/>
+        <param name="settings_file" type="string" value="$(find orb_slam3_ros)/config/Monocular/my_config.yaml"/>
 
         <!-- ROS ve Gazebo ayarları -->
         <param name="world_frame_id" type="string" value="world"/>
@@ -28,5 +32,6 @@
     </node>
 
     <!-- /world ve /camera arası dönüşüm -->
-    <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_camera_tf" args="0 0 0 0 0 0 1 world camera 100"/>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_camera_tf" args="0 0 0 0 0 0 1 world camera"/>
 </launch>
+

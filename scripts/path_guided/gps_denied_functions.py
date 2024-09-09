@@ -110,7 +110,7 @@ class PymavlinkFunctions:
                 0,  # zaman
                 self.drone.target_system,  # hedef sistem
                 self.drone.target_component,  # hedef bileşen
-                mavutil.mavlink.MAV_FRAME_LOCAL_NED,  # referans çerçeve
+                mavutil.mavlink.MAV_FRAME_LOCAL_NED,
                 0b0000111111000111,  # tip maskesi
                 0, 0, 0,  # Vx, Vy, Vz
                 x, y, z,  # x, y, z pozisyonu
@@ -142,3 +142,4 @@ class PymavlinkFunctions:
             self.move(pos.x, pos.y, pos.z)
         else:
             PrintColours.print_warning("No ORB-SLAM pose data available.")
+
