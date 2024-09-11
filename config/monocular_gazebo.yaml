@@ -1,3 +1,5 @@
+%YAML:1.0
+
 # Camera Parameters
 Camera.fx: 467.74270306499267
 Camera.fy: 467.74270306499267
@@ -14,34 +16,8 @@ Camera.height: 480
 Camera.fps: 30
 
 Camera.RGB: 1
+# Camera type
 Camera.type: "PinHole"
-
-# IMU Parameters
-IMU.AccelerometerBias:
-  x: 0.0
-  y: 0.0
-  z: 0.0
-IMU.GyroscopeBias:
-  x: 0.0
-  y: 0.0
-  z: 0.0
-
-IMU.AccelerometerScale:
-  x: 1.0
-  y: 1.0
-  z: 1.0
-IMU.GyroscopeScale:
-  x: 1.0
-  y: 1.0
-  z: 1.0
-
-IMU.NoiseDensity:
-  accelerometer: 0.0
-  gyroscope: 0.0
-
-IMU.RandomWalk:
-  accelerometer: 0.0
-  gyroscope: 0.0
 
 # Viewer Parameters
 Viewer.KeyFrameSize: 0.05

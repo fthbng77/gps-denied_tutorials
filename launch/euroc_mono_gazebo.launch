@@ -1,0 +1,32 @@
+<launch>
+    <!-- Simülasyon zamanını kullan -->
+    <param name="use_sim_time" value="true"/>
+
+    <!-- ORB_SLAM3 Ana Düğümü -->
+    <node name="orb_slam3" pkg="orb_slam3_ros_wrapper" type="orb_slam3_ros_wrapper_mono" output="screen">
+        <remap from="/camera/image_raw" to="/webcam/image_raw"/>
+
+        <!-- ORB-SLAM3 için parametreler -->
+	<param name="voc_file" type="string" value="/home/k81a0/ORB_SLAM3/Vocabulary/ORBvoc.txt"/>
+        <param name="settings_file" type="string" value="$(find orb_slam3_ros_wrapper)/config/monocular_gazebo.yaml"/>
+
+        <!-- ROS ve Gazebo ayarları -->
+        <param name="world_frame_id" type="string" value="world"/>
+        <param name="cam_frame_id" type="string" value="camera"/>
+        <param name="enable_pangolin" type="bool" value="true"/>
+    </node>
+
+    <!-- Görselleştirme için RViz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find orb_slam3_ros_wrapper)/config/orb_slam3_no_imu.rviz" output="screen"/>
+
+    <!-- Trajektör Yolu -->
+    <node pkg="hector_trajectory_server" type="hector_trajectory_server" name="trajectory_server_orb_slam3" output="screen" ns="orb_slam3_ros_wrapper">
+        <param name="/target_frame_name" value="/world"/>
+        <param name="/source_frame_name" value="/camera"/>
+        <param name="/trajectory_update_rate" value="20.0"/>
+        <param name="/trajectory_publish_rate" value="20.0"/>
+    </node>
+
+    <!-- /world ve /camera arası dönüşüm -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="world_to_camera_tf" args="0 0 0 0 0 0 1 world camera"/>
+</launch>

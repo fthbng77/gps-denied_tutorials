@@ -1,5 +1,26 @@
-# Visual Navigation
+# GPS / Non-GPS Transitions Params
 
+Var olan parametreleri sifirlamak icin;
+
+```
+param clear
+```
+ardindan;
+
+```
+reboot
+```
+bu islemlerden sonra parametreler sifirlanir. Belirli bir parametreyi sıfırlamak için;
+```
+param revert <parametre> 
+```
+komutunu kullanabilirsiniz.
+
+dizine kaydetmek icin;
+
+```
+param save /***.param
+```
 Gazebo simülasyon ortamında no_gps uçuş yapmak istiyorsanız güncel parametre verilerine ulaşmak için ardupilotun güncel versiyonunu kurmanı gerekiyor.
 
 ```
@@ -35,3 +56,11 @@ Aracın Home ve origin noktasını ayarlamak gerekiyor:
 parametreleri ayarlayın ardupilot SITL'den/Mavproxy:
 
 ![parameters](../imgs/parametres.png)
+
+
+----------------------------------------------------------------------------------------------------------
+
+
+### Ardupilot Nasıl Bahsediyor?
+
+https://ardupilot.org/copter/docs/common-non-gps-to-gps.html
