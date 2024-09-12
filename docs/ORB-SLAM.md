@@ -50,3 +50,9 @@ Başlattıktan sonra dikkat edilmesi gerekilen bir diğer şey hareket ettirildi
 ```
 roslaunch gokmen_mono_compressed.launch
 ```
+
+Scale faktör hesaplama
+```
+cd ~/gps-denied_tutorials/scripts/vslam/Monocular
+python orb_scale_factor.py
+```
