@@ -9,7 +9,7 @@ MAVPROXY
 eskisi: 
 sudo mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --aircraft drone
 yenisi: 
-mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:localhost:14550
+mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:0.0.0.0:14550
 
 ---------------------------------------------------------------------------------
 
