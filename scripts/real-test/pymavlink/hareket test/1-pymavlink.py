@@ -7,13 +7,10 @@ class MyDrone(PymavlinkFunctions):
         super(MyDrone, self).__init__(connection_string)
 
 if __name__ == "__main__":
-    drone = MyDrone('udpin:localhost:14550')
+    drone = MyDrone('tcpin:localhost:14550')
 
     drone.set_mode("GUIDED")
     drone.arm()
-
-    drone.takeoff(2)
-    time.sleep(5)
 
     # Drone'u land moduna al
     drone.land()

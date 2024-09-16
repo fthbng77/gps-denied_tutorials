@@ -70,7 +70,9 @@ class PymavlinkFunctions:
     def slow_turn(self, heading, relative = False, cw = 1):
         # Toplam dönüş açısını 30 derecelik parçalara bölüyoruz
         increment = 30 if heading > 0 else -30  # Yönü belirlemek için pozitif veya negatif yönde artış
+        print("Toplam derece: ", heading)
         total_turns = int(heading / increment)  # Kaç parçaya bölüneceğini buluyoruz
+        print("Toplam dönüş adımı: ", total_turns)
         remainder = heading % increment  # Eğer tam bölünmüyorsa kalan kısmı hesaplıyoruz
 
         # Her adımda 30 derece döndürerek işlemi yapıyoruz
@@ -84,8 +86,10 @@ class PymavlinkFunctions:
                 cw,  # param 3, direction -1 ccw, 1 cw
                 relative,  # param 4, relative offset 1, absolute angle 0
                 0, 0, 0  # param 5 ~ 7 not used
-        )
-        time.sleep(0.5)  # Yarım saniye bekleme
+            )
+            print("Kaçıncı dönüş: ", i)
+            print("Kalan dönüş adımı: ", total_turns - i)
+            time.sleep(2)  # 2 saniye bekleme
 
         # Kalan dönüş açısını tamamlıyoruz
         if remainder != 0:
@@ -96,7 +100,7 @@ class PymavlinkFunctions:
                 remainder,  # param 1, kalan dereceyi döndür
                 0,  # param 2, yaw speed deg/s
                 cw,  # param 3, direction -1 ccw, 1 cw
-                is_relative,  # param 4, relative offset 1, absolute angle 0
+                relative,  # param 4, relative offset 1, absolute angle 0
                 0, 0, 0  # param 5 ~ 7 not used
             )
             time.sleep(0.5)  # Son adımda da yarım saniye bekleme

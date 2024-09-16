@@ -4,10 +4,15 @@ import rospy
 from geometry_msgs.msg import PoseStamped
 from collections import deque
 
-scale_factor_x = -25.3456
-scale_factor_y = -42.670277514
-scale_factor_z = 32.282871671
+scale_factor_x = -60.3465
+scale_factor_y = 60.3465
+scale_factor_z = -60.3465
 
+"""
+scale_factor_x = -14.911
+scale_factor_y = 14.911
+scale_factor_z = -14.911
+"""
 # Listeyi son 15 değeri tutacak şekilde sınırlıyoruz
 position_history_x = deque(maxlen=15)
 position_history_y = deque(maxlen=15)
@@ -17,17 +22,24 @@ def filter_value(value, history):
     if len(history) < 15:
         return value
     avg = sum(history) / len(history)
-    if abs(value - avg) > 1:
-        return avg  # Fark 1'den büyükse ortalama değeri kullan
+    if abs(value - avg) > 0.2:
+        return avg  # Fark 0.5'ten büyükse ortalama değeri kullan
     return value
 
 def transform_pose(orb_pose):
     mavros_pose = PoseStamped()
     mavros_pose.header = orb_pose.header
     
+    """
     # Konum değerlerini ölçeklendir
-    transformed_x = orb_pose.pose.position.x * scale_factor_y
-    transformed_y = orb_pose.pose.position.z * scale_factor_x
+    transformed_x = orb_pose.pose.position.x * scale_factor_x
+    transformed_y = orb_pose.pose.position.z * scale_factor_y
+    transformed_z = orb_pose.pose.position.y * scale_factor_z
+    """
+    
+    # Konum değerlerini ölçeklendir
+    transformed_x = orb_pose.pose.position.z * scale_factor_x
+    transformed_y = orb_pose.pose.position.x * scale_factor_y
     transformed_z = orb_pose.pose.position.y * scale_factor_z
     
     # Son gelen veriyi filtrele

@@ -3,12 +3,12 @@
     <param name="use_sim_time" value="false"/>
 
     <!-- Sıkıştırılmış görüntüleri düz görüntülere dönüştürmek için düğüm -->
-    <node name="decompress_image" pkg="image_transport" type="republish" args="compressed in:=/usb_cam/image_raw/compressed raw out:=/usb_cam/image_raw"/>
+    <node name="decompress_image" pkg="image_transport" type="republish" args="compressed in:=/webcam/image_raw/compressed raw out:=/webcam/image_raw"/>
 
     <!-- ORB_SLAM3 Ana Düğümü -->
     <node name="orb_slam3" pkg="orb_slam3_ros_wrapper" type="orb_slam3_ros_wrapper_mono" output="screen">
         <!-- Düz görüntüleri almak için topic -->
-        <remap from="/camera/image_raw" to="/usb_cam/image_raw"/>
+        <remap from="/camera/image_raw" to="/webcam/image_raw"/>
 
         <!-- ORB-SLAM3 için parametreler -->
         <param name="voc_file" type="string" value="$(find orb_slam3_ros_wrapper)/config/ORBvoc.txt"/>
