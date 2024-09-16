@@ -22,4 +22,4 @@
 
 * [realsense kamera kalibrasyonu](docs/realsense_kamera_kalibrasyonu.md)
 
-* [Raspberry_internete_baglama.md](docs/Raspberry internete baglama)
+* [Raspberry internete baglama](docs/Raspberry_internete_baglama.md)
