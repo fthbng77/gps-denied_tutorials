@@ -35,7 +35,7 @@ sudo arp-scan --localnet
 ```
 
 ## Raspberry ile bağlanıp kamera çalıştırma bashrcye
-bashrc ye kayıt edilmesi gerekiyor.
+bashrcye kayıt edilmesi gerekiyor.
 ```
 # export ROS_MASTER_URI=http://192.168.182.41:11311 
 # export ROS_IP=192.168.182.41
