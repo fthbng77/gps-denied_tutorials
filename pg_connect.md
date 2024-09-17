@@ -27,7 +27,7 @@ mono  MissionPlanner.exe
 
 ---------------------------------------------------------------------------------
 
-ayni agdaki cihazlarin ipsini sorgulamak icin
+## Ayni ağdaki cihazlarin ipsini sorgulama
 ```
 sudo arp-scan --localnet
 ```
