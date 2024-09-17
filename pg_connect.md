@@ -33,3 +33,16 @@ mono  MissionPlanner.exe
 ```
 sudo arp-scan --localnet
 ```
+
+## Raspberry ile bağlanıp kamera çalıştırma bashrcye
+bashrc ye kayıt edilmesi gerekiyor.
+```
+# export ROS_MASTER_URI=http://192.168.182.41:11311 
+# export ROS_IP=192.168.182.41
+```
+
+```
+sudo ssh gokmen@192.168.43.163 # ifconfig ile öğreniliyor. 
+cd gps-denied_tutorials/launch
+roslaunch usb_cam-test.launch
+```
