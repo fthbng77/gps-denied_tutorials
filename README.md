@@ -18,7 +18,7 @@
 
 * [Simülasyon Ortamda No-GPS](docs/Simulation_No-GPS.md)
 
-* [Real Ortamda Araca Bağlanma](pg_connect.md)
+* [Real Ortamda Araca Bağlanma](docs/pg_connect.md)
 
 * [realsense kamera kalibrasyonu](docs/realsense_kamera_kalibrasyonu.md)
 
