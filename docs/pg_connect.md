@@ -1,5 +1,7 @@
 ## mavros verilerini dinlemek
 
+pymavlink kodu oluştururken aşağıdaki bağlanma yöntemi ile `connection = mavutil.mavlink_connection('tcp:127.0.0.1:14552')` olması gerekiyor.
+
 ```
 sudo cat /dev/ttyUSB0
 screen /dev/ttyUSB0 57600
@@ -8,16 +10,14 @@ screen /dev/ttyUSB0 57600
 
 ## MAVPROXY başlat
 ```
-mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:0.0.0.0:14551
+ mavproxy.py --master=/dev/ttyUSB0 --baudrate 57600 --out tcpin:0.0.0.0:14550 --out tcpin:0.0.0.0:14551 --out tcpin:0.0.0.0:14552
 ```
 
 --------------------------------------------------------------
 ## mavros başlat
 
 ```
-roslaunch mavros apm.launch
-
-fcu_url:=tcp://192.168.148.195:14550
+roslaunch mavros apm.launch fcu_url:=tcp://127.0.0.1:14550
 ```
 ---------------------------------------------------------------------------------
 ## MissionPlanner başlat
