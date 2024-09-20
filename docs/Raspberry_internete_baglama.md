@@ -26,7 +26,7 @@ sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
 sudo systemctl restart wpa_supplicant
 ```
 
-##Raspberry her açıldığında internete bağlanmasını sağlamak için
+## Raspberry her açıldığında internete bağlanmasını sağlamak için
 ```
 sudo nano /etc/rc.local
 ```
