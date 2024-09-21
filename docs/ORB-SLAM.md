@@ -48,7 +48,7 @@ sudo apt install ros-noetic-hector-trajectory-server
 Çalıştırmak için : my_config.yaml dosyası gerekiyor
 Başlattıktan sonra dikkat edilmesi gerekilen bir diğer şey hareket ettirildikten sonra görüntü açılır:
 ```
-roslaunch gokmen_mono_compressed.launch
+roslaunch gokmen_mono_compressed.launch _image_transport:=compressed
 ```
 
 Scale faktör hesaplama
