@@ -23,3 +23,5 @@
 * [realsense kamera kalibrasyonu](docs/realsense_kamera_kalibrasyonu.md)
 
 * [Raspberry internete baglama](docs/Raspberry_internete_baglama.md)
+
+* [X Y ekseninde Visual inertial SLAM](docs/xy.md)
