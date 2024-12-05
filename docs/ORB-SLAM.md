@@ -24,7 +24,7 @@ chmod +x build.sh
 ardından wrapper dosyası indirilicek:
 ```
 cd ~/catkin_ws/src/
-git clone https://github.com/thien94/orb_slam3_ros_wrapper.git
+git clone https://github.com/fthbng77/orb_slam3_ros.git
 ```
 
 wrapper dosyasını indirdikten sonra dikkat edilmesi gereken:
