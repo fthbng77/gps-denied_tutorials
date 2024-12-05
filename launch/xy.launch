@@ -4,14 +4,6 @@
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find iq_sim)/worlds/xy.world"/>
     <arg name="gui" value="$(arg gui)"/>
+    <!-- more default parameters can be changed here -->
   </include>
-
-
-  <node pkg="gazebo_ros" type="gazebo_ros_camera" name="gazebo_ros_camera" output="screen">
-    <param name="camera_name" value="camera"/>
-    <param name="image_topic_name" value="image_raw"/>
-    <param name="camera_info_topic_name" value="camera_info"/>
-    <param name="frame_name" value="camera_link"/>
-  </node>
 </launch>
-
