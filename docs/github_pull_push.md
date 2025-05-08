@@ -11,6 +11,6 @@ git push -u -f origin main
 ```
 normal key:
 ```
-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
+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
 ```
 
